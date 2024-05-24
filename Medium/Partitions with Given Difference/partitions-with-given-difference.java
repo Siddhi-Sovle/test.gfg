@@ -60,10 +60,10 @@ class GFG {
 
 
 
-class Solution {
+class Solution{
     public static int[][] dp;
     public static int mod;
-    public static int dfs(int index,int sum,int[] arr){
+    public static int dfs(int index, int sum, int[] arr){
         if(index>=arr.length){
             return sum==0?1:0;
         }
@@ -72,15 +72,14 @@ class Solution {
         }
         int ways = dfs(index+1,sum,arr);
         if(sum-arr[index]>=0){
-            ways=(ways%mod+dfs(index+1,sum-arr[index],arr)%mod)%mod;
+            ways = (ways%mod+dfs(index+1, sum-arr[index],arr)%mod)%mod;
         }
         return dp[index][sum] = ways%mod;
     }
     
-    public static int countPartitions(int n, int d, int[] arr) {
-        // code here
-        int sum = 0;
-        mod = (int)(1e9+7);
+    public static int countPartitions(int n, int d, int[] arr){
+        int sum=0;
+        mod = (int)(1e9 + 7);
         for(int num:arr){
             sum+=num;
         }
@@ -90,10 +89,8 @@ class Solution {
         }
         dp = new int[n][(maxi/2)+1];
         for(int i=0;i<n;i++){
-            Arrays.fill(dp[i],-1);
+            Arrays.fill(dp[i], -1);
         }
-        return dfs(0,(maxi/2),arr);
+        return dfs(0, (maxi/2),arr);
     }
 }
-        
-        
